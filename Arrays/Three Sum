@@ -1,0 +1,40 @@
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> ans = new ArrayList<>();
+
+        for(int i = 0; i < nums.length; i++){
+            if(i > 0 && nums[i] == nums[i-1]) continue;
+
+            int j = i+1;
+            int k = nums.length-1;
+
+            while(j < k){
+                int sum = nums[i] + nums[j] + nums[k];
+
+                if(sum < 0) j++;
+                else if(sum > 0) k--;
+                else{
+                    List<Integer> li = new ArrayList<>();
+                    li.add(nums[i]);
+                    li.add(nums[j]);
+                    li.add(nums[k]);
+                    ans.add(li);
+
+                    j++;
+                    k--;
+
+                    while(j < k && nums[j] == nums[j-1]) j++;
+                    while(j < k && nums[k] == nums[k+1]) k--;
+                }
+            }
+        }
+        return ans;
+    }
+}
+
+Time Complexity (O(n²)): 
+The algorithm sorts the input array in O(n log n) time and then uses a two-pointer approach for each element in the array, which results in an O(n) operation for each element. Thus, the overall time complexity is dominated by the O(n²) from the two-pointer approach.
+
+Space Complexity (O(1) auxiliary, O(k) output): 
+The algorithm uses a constant amount of extra space for variables like i, j, and k, so the auxiliary space complexity is O(1). The space complexity for the output is O(k), where k is the number of valid triplets found.

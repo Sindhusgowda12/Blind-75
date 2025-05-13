@@ -1,0 +1,25 @@
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        if (intervals.length <= 1) return intervals;
+
+        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+        List<int[]> merged = new ArrayList<>();
+
+        for (int[] interval : intervals) {
+            if (merged.isEmpty() || merged.get(merged.size() - 1)[1] < interval[0]) {
+                merged.add(interval);
+            } else {
+                merged.get(merged.size() - 1)[1] = 
+                    Math.max(merged.get(merged.size() - 1)[1], interval[1]);
+            }
+        }
+
+        return merged.toArray(new int[merged.size()][]);
+    }
+}
+
+Time Complexity (O(n log n)): 
+The algorithm first sorts the intervals array, which takes O(n log n) time, and then iterates through the sorted intervals in O(n) time. Thus, the overall time complexity is dominated by the sorting step, making it O(n log n).
+
+Space Complexity (O(n)): 
+The solution uses a list (merged) to store the merged intervals, which in the worst case can contain all n intervals. Therefore, the space complexity is O(n).

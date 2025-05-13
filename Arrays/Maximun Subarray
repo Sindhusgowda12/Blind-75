@@ -1,0 +1,20 @@
+class Solution {
+    public int maxSubArray(int[] nums) {
+    int currentSum = 0;        
+    int maxSum = Integer.MIN_VALUE;     
+
+    for (int i = 0; i < nums.length; i++) {
+        currentSum = Math.max(nums[i], currentSum + nums[i]);
+        maxSum = Math.max(maxSum, currentSum);
+    }
+
+    return maxSum;
+   }
+
+}
+
+Time Complexity (O(n)): 
+The algorithm iterates through the array once, performing constant-time operations for each element, leading to a linear time complexity of O(n).
+
+Space Complexity (O(1)): 
+The solution uses only a constant amount of extra space (for currentSum and maxSum), regardless of the input size, hence it has constant space complexity.

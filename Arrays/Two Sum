@@ -1,0 +1,27 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for(int i = 0; i < nums.length; i++){
+            int complement = target - nums[i];
+            if(map.containsKey(complement)){
+                return new int[]{map.get(complement), i};
+            }
+            map.put(nums[i], i);
+        }
+        return new int[]{};
+    }
+}
+
+<<<<<<< HEAD
+Time Complexity (O(n)): 
+The algorithm iterates through the array once, and for each element, it performs constant time operations (checking and inserting into the HashMap). Thus, the time complexity is O(n).
+
+Space Complexity (O(n)): 
+The solution uses a HashMap to store each number and its corresponding index, which can store up to n elements in the worst case, leading to a space complexity of O(n).
+=======
+Time Complexity: O(n)
+The algorithm traverses the nums array only once using a single for loop, and each operation (containsKey, put) on the HashMap takes constant time on average — hence, total time is linear in the size of the input array.
+
+Space Complexity: O(n)
+In the worst case, all n elements could be stored in the HashMap if no solution is found early — so space grows linearly with the input size.
+>>>>>>> 03ebdb12218fac6fc72fc8c547a87780d15822ef

@@ -1,0 +1,26 @@
+class Solution {
+    public int maxArea(int[] height) {
+        int left = 0;
+        int right = height.length - 1;
+        int maxWater = 0;
+
+        while (left < right) {
+            int width = right - left;
+            int minHeight = Math.min(height[left], height[right]);
+            int area = width * minHeight;
+            maxWater = Math.max(maxWater, area);
+
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return maxWater;
+    }
+}
+Time Complexity (O(n)): 
+The algorithm uses a two-pointer approach, where each pointer moves at most once across the entire array, leading to a linear time complexity of O(n).
+
+Space Complexity (O(1)): 
+The solution uses only a constant amount of extra space (for left, right, maxWater, width, and minHeight), regardless of the input size, hence it has constant space complexity.

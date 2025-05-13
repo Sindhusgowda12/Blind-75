@@ -1,0 +1,27 @@
+class Solution{
+  public int[] productExceptSelf(int[] nums) {
+    int n = nums.length;
+    int[] res = new int[n];
+    int left = 1, right = 1;
+
+    for (int i = 0; i < n; i++) {
+        res[i] = 1;
+    }
+
+    for (int i = 0; i < n; i++) {
+        res[i] *= left;
+        left *= nums[i];
+
+        res[n - 1 - i] *= right;
+        right *= nums[n - 1 - i];
+    }
+
+    return res;
+  }
+}
+
+Time Complexity (O(n)): 
+The algorithm iterates through the array twice: once to initialize the res array and once to compute the product of elements to the left and right of each index. Therefore, the time complexity is O(n).
+
+Space Complexity (O(1)): 
+The algorithm uses a constant amount of extra space for variables left, right, and the res array (which is returned as the result), so the space complexity is O(1) with respect to additional space used.

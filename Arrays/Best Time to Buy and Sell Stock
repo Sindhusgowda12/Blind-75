@@ -1,0 +1,19 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+        int mini = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        int n = prices.length;
+        for(int i = 0; i < n; i++)
+        {
+            mini = Math.min(mini, prices[i]);
+            maxProfit = Math.max(maxProfit, prices[i] - mini);
+        }
+        return maxProfit;
+    }
+}
+
+Time Complexity: O(n)
+The solution iterates through the prices array once, performing constant time operations (finding the minimum and maximum profit) for each element, leading to a linear time complexity.
+
+Space Complexity: O(1)
+The algorithm uses only a fixed amount of extra space (for mini and maxProfit), regardless of the input size, hence it has constant space complexity.
