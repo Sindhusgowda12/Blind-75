@@ -1,0 +1,26 @@
+class Solution {
+    public int search(int[] nums, int target) {
+        int start = 0, end = nums.length-1;
+
+        while(start <= end){
+            int mid = start + (end - start) / 2;
+
+            if(nums[mid] == target) return mid;
+
+            if(nums[mid] <= target){
+                start = mid + 1;
+            }
+            
+            else{
+                end = mid - 1;;
+            }
+        }
+        return -1;
+    }
+}
+
+Time Complexity (O(log n)): 
+The algorithm uses binary search, which repeatedly divides the search space in half, resulting in a logarithmic time complexity of O(log n).
+
+Space Complexity (O(1)): 
+The solution uses only a constant amount of extra space for pointers (start, end, mid), so the space complexity is O(1).

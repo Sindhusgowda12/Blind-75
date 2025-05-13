@@ -1,0 +1,39 @@
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int first = findFirst(nums, target);
+        int last = findLast(nums, target);
+        return new int[]{first, last};
+
+    }
+    static int findFirst(int[] nums, int target){
+        int start = 0, end = nums.length-1;
+        int res = -1;
+        while(start <= end){
+            int mid = start + (end - start) / 2;
+            if(nums[mid] >= target) end = mid - 1;
+            else start = mid + 1;
+            
+            if(nums[mid] == target) res = mid;
+        }
+        return res;
+    }
+
+    static int findLast(int[] nums, int target){
+        int start = 0, end = nums.length-1;
+        int res = -1;
+        while(start <= end){
+            int mid = start + (end - start) / 2;
+            if(nums[mid] <= target) start = mid + 1;
+            else end = mid - 1;
+            
+            if(nums[mid] == target) res = mid;
+        }
+        return res;
+    }
+}
+
+Time Complexity (O(log n)): 
+Both findFirst and findLast functions perform a binary search independently, each taking O(log n) time, so the overall time complexity remains O(log n).
+
+Space Complexity (O(1)): 
+The solution uses only a constant amount of extra space for variables (start, end, mid, res), so the space complexity is O(1).

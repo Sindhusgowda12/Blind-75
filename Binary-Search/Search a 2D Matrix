@@ -1,0 +1,25 @@
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        if (rows == 0) return false;
+        int left = 0, right = rows * cols - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            int midElement = matrix[mid / cols][mid % cols];
+
+            if (midElement == target) return true;
+            if (midElement < target) left = mid + 1;
+            else right = mid - 1;
+        }
+
+        return false;
+    }
+}
+
+Time Complexity (O(log (m × n))): 
+The algorithm performs binary search on a virtual 1D array of size m × n, where m is the number of rows and n is the number of columns, resulting in O(log (m × n)) time.
+
+Space Complexity (O(1)): 
+The solution uses a constant amount of extra space (only pointers and temporary variables), so the space complexity is O(1).
