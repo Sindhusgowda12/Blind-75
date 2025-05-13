@@ -1,0 +1,54 @@
+class MyQueue {
+    Stack<Integer> inStack;
+    Stack<Integer> outStack;
+    public MyQueue() {
+        inStack = new Stack<>();
+        outStack = new Stack<>();
+    }
+    
+    public void push(int x) {
+        inStack.push(x);
+    }
+    
+    public int pop() {
+        if(outStack.isEmpty()){
+            while(!inStack.isEmpty()){
+                outStack.push(inStack.pop());
+            }
+        }
+        return outStack.pop();
+    }
+    
+    public int peek() {
+        if(outStack.isEmpty()){
+            while(!inStack.isEmpty()){
+                outStack.push(inStack.pop());
+            }
+        }
+        return outStack.peek();
+    }
+    
+    public boolean empty() {
+        return inStack.isEmpty() && outStack.isEmpty();
+    }
+}
+
+Time Complexity (Amortized):
+push(x): O(1) — Push to inStack.
+
+pop(): O(1) — Elements are moved only once to outStack.
+
+peek(): O(1) — Same logic as pop().
+
+empty(): O(1) — Simple check on both stacks.
+
+Space Complexity:
+O(n) — Both inStack and outStack can hold up to n elements in total.
+
+
+
+
+
+
+
+

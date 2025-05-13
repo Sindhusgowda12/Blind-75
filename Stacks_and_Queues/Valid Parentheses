@@ -1,0 +1,29 @@
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+        
+        for (char c : s.toCharArray()) {
+            if (c == '(' || c == '{' || c == '[') {
+                stack.push(c);
+            } else {
+                if (stack.isEmpty()) return false;
+                char top = stack.pop();
+                if ((c == ')' && top != '(') || 
+                    (c == '}' && top != '{') || 
+                    (c == ']' && top != '[')) {
+                    return false;
+                }
+            }
+        }
+        
+        return stack.isEmpty();
+    }
+}
+
+Time Complexity:
+O(n), where n is the length of the string s.
+Each character is processed once, and each stack operation (push or pop) is O(1).
+
+Space Complexity:
+O(n), where n is the length of the string s.
+In the worst case, when all characters are opening brackets, we could store up to n characters in the stack.

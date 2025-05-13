@@ -1,0 +1,21 @@
+class Solution {
+    public int[] dailyTemperatures(int[] temperatures) {
+        Stack<Integer> st = new Stack<>();
+        int[] res = new int[temperatures.length];
+
+        for(int i = 0; i < temperatures.length; i++){
+            while(!st.isEmpty() && temperatures[i] > temperatures[st.peek()]){
+                int index = st.pop();
+                res[index] = i - index;
+            }
+            st.push(i);
+        }
+        return res;
+    }
+}
+
+Time Complexity:
+O(n) — Each element is pushed and popped from the stack at most once, where n is the length of the array.
+
+Space Complexity:
+O(n) — The stack stores indices, and the result array stores the number of days for each element.

@@ -1,0 +1,32 @@
+public class Solution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        Map<Integer, Integer> map = new HashMap<>();
+        Stack<Integer> stack = new Stack<>();
+        
+        for (int num : nums2) {
+            while (!stack.isEmpty() && stack.peek() < num) {
+                map.put(stack.pop(), num);
+            }
+            stack.push(num);
+        }
+        
+        int[] res = new int[nums1.length];
+        for (int i = 0; i < nums1.length; i++) {
+            res[i] = map.getOrDefault(nums1[i], -1);
+        }
+        
+        return res;
+    }
+}
+
+Time Complexity:
+O(n + m), where:
+n is the length of nums1
+m is the length of nums2
+We process all elements of nums2 once using the stack (O(m)), and for each element of nums1, we perform a constant time lookup in the map (O(n)).
+
+Space Complexity:
+O(m + n), where:
+We use a stack (O(m)) to store elements from nums2.
+We use a map (O(m)) to store the next greater element for each element in nums2.
+We also store the result in an array (O(n)).
