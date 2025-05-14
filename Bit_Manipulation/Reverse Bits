@@ -1,0 +1,16 @@
+public class Solution {
+    public int reverseBits(int n) {
+        int res = 0;
+        for(int i = 0; i < 32; i++){
+            res = (res << 1) | (n & 1);
+            n = n >>> 1;
+        }
+        return res;
+    }
+}
+
+Time Complexity: O(1)
+The loop runs 32 times (fixed), so it’s constant time.
+
+Space Complexity: O(1)
+Uses only a few variables; no extra space grows with input.
